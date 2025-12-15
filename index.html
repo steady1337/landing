@@ -2,13 +2,73 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tiny Bonkers</title>
-  <meta name="description" content="Magische Handmade Kleinigkeiten & Suncatcher von Tiny Bonkers." />
+
+  <meta name="description" content="Magische Handmade Kleinigkeiten & Geschenke von Tiny Bonkers." />
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;   /* horizontal */
+      align-items: center;       /* vertikal */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f6f5f3;
+      color: #111;
+    }
+
+    .container {
+      text-align: center;
+      padding: 32px;
+      max-width: 600px;
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: 2.2rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    a.button:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+  </style>
 </head>
-<body style="font-family:system-ui;max-width:720px;margin:40px auto;padding:0 16px;">
-  <h1>Tiny Bonkers ✨</h1>
-  <p>Magische Handmade Kleinigkeiten & Geschenke.</p>
-  <p><a href="https://dein-linktree-link" target="_blank" rel="noopener">Zum Shop / Linktree</a></p>
+<body>
+  <div class="container">
+    <h1>Tiny Bonkers ✨</h1>
+    <p>
+      Magische, handgemachte Kleinigkeiten & Geschenke.<br>
+      Für alle, die ein bisschen Zauber im Alltag lieben.
+    </p>
+
+    <a
+      class="button"
+      href="https://linktr.ee/_tinybonkers_"
+      target="_blank"
+      rel="noopener"
+    >
+      Zum Shop & mehr
+    </a>
+  </div>
 </body>
 </html>
