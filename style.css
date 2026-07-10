@@ -329,10 +329,10 @@ body.subpage {
     justify-content: center;
     text-align: center;
     padding: 18px 16px 24px;
-    border-radius: 22px;
-    background: rgba(0,0,0,.42);
-    box-shadow: 0 0 50px rgba(0,0,0,.35);
-    backdrop-filter: blur(1.2px);
+    border-radius: 0px;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
   }
   .long-card { justify-content: flex-start; padding-top: 20px; }
   .mobile-logo { width: min(72vw, 330px); height: auto; display: block; margin: 0 auto 18px; }
