@@ -1,0 +1,284 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #000; }
+body { font-family: Arial, Helvetica, sans-serif; color: #fff; }
+
+.page {
+  background: #000;
+  color: #fff;
+}
+
+/* Startseite: Das Bild wird nach der Browserhöhe skaliert.
+   Dadurch verschwindet der schwarze Rand unten am PC; falls nötig entstehen nur seitliche schwarze Balken. */
+body.home {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-stage {
+  position: relative;
+  line-height: 0;
+  background: #000;
+}
+
+.home .image-stage {
+  width: min(100vw, calc(100vh * 16 / 9));
+  aspect-ratio: 16 / 9;
+}
+
+.image-stage img.page-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Unterseiten: gleiche Skalierung wie die Startseite,
+   aber mit eigenem Platz für den Zurück-Link unter dem Bild. */
+body.subpage {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 28px;
+}
+
+.subpage .image-stage {
+  width: min(100vw, calc(100vh * 16 / 9));
+  aspect-ratio: 16 / 9;
+  flex: 0 0 auto;
+}
+
+.hotspot {
+  position: absolute;
+  display: block;
+  z-index: 5;
+  text-indent: -9999px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.hotspot:hover,
+.back-link:hover {
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 16px rgba(255,255,255,0.18);
+}
+
+/* Klickflächen der Startseiten-Navigation */
+.link-about     { left: 15.2%; top: 28.3%; width: 18.7%; height: 5.4%; }
+.link-etsy      { left: 35.2%; top: 28.3%; width: 10.0%; height: 5.4%; }
+.link-instagram { left: 45.8%; top: 28.3%; width: 10.0%; height: 5.4%; }
+.link-tiktok    { left: 56.3%; top: 28.3%; width: 7.0%;  height: 5.4%; }
+.link-pinterest { left: 64.1%; top: 28.3%; width: 9.2%;  height: 5.4%; }
+.link-impressum { left: 74.3%; top: 28.3%; width: 11.8%; height: 5.4%; }
+
+.back-wrap {
+  position: static;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+  margin: 14px 0 0;
+  padding: 0;
+  background: transparent;
+  pointer-events: none;
+  flex: 0 0 auto;
+}
+
+.back-wrap .back-link {
+  pointer-events: auto;
+}
+
+.back-link {
+  color: #fff;
+  font-size: clamp(18px, 2.2vw, 30px);
+  line-height: 1.2;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.75);
+}
+
+
+/* Dezente Glühwürmchen auf allen Seiten */
+.fireflies {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+
+.firefly {
+  position: absolute;
+  width: clamp(4px, 0.42vw, 8px);
+  height: clamp(4px, 0.42vw, 8px);
+  border-radius: 50%;
+  background: rgba(255, 241, 198, 0.98);
+  box-shadow:
+    0 0 7px rgba(255, 241, 198, 0.98),
+    0 0 16px rgba(255, 224, 145, 0.72),
+    0 0 32px rgba(255, 204, 96, 0.36);
+  opacity: 0;
+  transform: translate3d(0, 0, 0) scale(0.75);
+  animation-name: firefly-glow, firefly-float;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  animation-direction: alternate, alternate;
+  filter: blur(0.1px);
+  will-change: transform, opacity;
+}
+
+ .f1  { left: 18%; top: 52%; animation-duration: 5.8s, 12s;  animation-delay: 0s, -2s; }
+.f2  { left: 25%; top: 65%; width: 5px; height: 5px; animation-duration: 7.4s, 15s; animation-delay: -2s, -5s; }
+.f3  { left: 34%; top: 47%; width: 6px; height: 6px; animation-duration: 6.2s, 14s; animation-delay: -4s, -1s; }
+.f4  { left: 43%; top: 59%; width: 5px; height: 5px; animation-duration: 8.2s, 16s; animation-delay: -1s, -6s; }
+.f5  { left: 53%; top: 44%; width: 6px; height: 6px; animation-duration: 6.8s, 13s; animation-delay: -5s, -3s; }
+.f6  { left: 62%; top: 62%; width: 4px; height: 4px; animation-duration: 7.8s, 18s; animation-delay: -3s, -8s; }
+.f7  { left: 70%; top: 71%; width: 4px; height: 4px; animation-duration: 9s, 17s; animation-delay: -6s, -4s; }
+.f8  { left: 78%; top: 55%; width: 5px; height: 5px; animation-duration: 8.8s, 19s; animation-delay: -4s, -9s; }
+.f9  { left: 30%; top: 75%; width: 4px; height: 4px; animation-duration: 10s, 20s; animation-delay: -7s, -10s; }
+.f10 { left: 49%; top: 71%; width: 5px; height: 5px; animation-duration: 9.6s, 18s; animation-delay: -2s, -12s; }
+.f11 { left: 82%; top: 69%; width: 4px; height: 4px; animation-duration: 10.5s, 21s; animation-delay: -8s, -5s; }
+.f12 { left: 14%; top: 69%; width: 5px; height: 5px; animation-duration: 9.2s, 17s; animation-delay: -5s, -9s; }
+.f13 { left: 57%; top: 52%; width: 4px; height: 4px; animation-duration: 11s, 22s; animation-delay: -9s, -4s; }
+.f14 { left: 67%; top: 47%; width: 6px; height: 6px; animation-duration: 10.8s, 20s; animation-delay: -6s, -13s; }
+.f15 { left: 39%; top: 67%; width: 4px; height: 4px; animation-duration: 11.5s, 23s; animation-delay: -9s, -11s; }
+.f16 { left: 73%; top: 38%; width: 5px; height: 5px; animation-duration: 9.8s, 18s; animation-delay: -7s, -6s; }
+/* zusätzliche Glühwürmchen an den Bildrändern */
+.f17 { left: 5%;  top: 43%; width: 5px; height: 5px; animation-duration: 6.4s, 11s; animation-delay: -1s, -3s; }
+.f18 { left: 8%;  top: 62%; width: 4px; height: 4px; animation-duration: 7.1s, 13s; animation-delay: -3s, -7s; }
+.f19 { left: 11%; top: 78%; width: 6px; height: 6px; animation-duration: 5.9s, 12s; animation-delay: -4s, -2s; }
+.f20 { left: 92%; top: 45%; width: 5px; height: 5px; animation-duration: 6.8s, 12s; animation-delay: -2s, -5s; }
+.f21 { left: 88%; top: 62%; width: 4px; height: 4px; animation-duration: 7.6s, 14s; animation-delay: -5s, -9s; }
+.f22 { left: 95%; top: 73%; width: 6px; height: 6px; animation-duration: 6.1s, 11s; animation-delay: -6s, -4s; }
+.f23 { left: 4%;  top: 56%; width: 4px; height: 4px; animation-duration: 8.1s, 15s; animation-delay: -7s, -8s; }
+.f24 { left: 97%; top: 55%; width: 5px; height: 5px; animation-duration: 7.2s, 13s; animation-delay: -3s, -10s; }
+
+.edge {
+  animation-name: firefly-glow, firefly-edge-float;
+}
+
+@keyframes firefly-edge-float {
+  0%   { margin-left: 0;    margin-top: 0; }
+  22%  { margin-left: -26px; margin-top: -10px; }
+  48%  { margin-left: 16px;  margin-top: -24px; }
+  74%  { margin-left: -18px; margin-top: 12px; }
+  100% { margin-left: 24px;  margin-top: 22px; }
+}
+
+
+@keyframes firefly-glow {
+  0%, 12% { opacity: 0.03; transform: scale(0.55); }
+  30%     { opacity: 0.55; transform: scale(0.95); }
+  48%     { opacity: 0.98; transform: scale(1.14); }
+  64%     { opacity: 0.42; transform: scale(0.96); }
+  100%    { opacity: 0.08; transform: scale(0.68); }
+}
+
+@keyframes firefly-float {
+  0%   { margin-left: 0;    margin-top: 0; }
+  20%  { margin-left: 18px; margin-top: -12px; }
+  45%  { margin-left: -9px; margin-top: -28px; }
+  70%  { margin-left: 22px; margin-top: 9px; }
+  100% { margin-left: -15px; margin-top: 20px; }
+}
+
+
+/* zwei zusätzliche Glühwürmchen oben am Rand */
+.f25 { left: 21%; top: 16%; width: 4px; height: 4px; animation-duration: 7.2s, 14s; animation-delay: -2s, -6s; }
+.f26 { left: 79%; top: 18%; width: 5px; height: 5px; animation-duration: 6.6s, 13s; animation-delay: -5s, -3s; }
+
+.top-edge {
+  animation-name: firefly-glow, firefly-top-float;
+}
+
+@keyframes firefly-top-float {
+  0%   { margin-left: 0;    margin-top: 0; }
+  24%  { margin-left: 18px; margin-top: 8px; }
+  52%  { margin-left: -12px; margin-top: -6px; }
+  78%  { margin-left: 24px; margin-top: 14px; }
+  100% { margin-left: -18px; margin-top: 4px; }
+}
+
+/* Auf Handy etwas sichtbarer, weil der gesamte Entwurf kleiner dargestellt wird. */
+@media (max-width: 700px) {
+  .firefly {
+    width: 7px;
+    height: 7px;
+    box-shadow:
+      0 0 8px rgba(255, 244, 205, 1),
+      0 0 18px rgba(255, 226, 150, 0.82),
+      0 0 36px rgba(255, 203, 92, 0.46);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .firefly { animation: none; opacity: 0.75; }
+}
+
+
+
+
+/* Glühwürmchen mit Tiefenwirkung: kleiner, schwächer, weicher und langsamer.
+   Sie sitzen gezielt in offenen Bereichen zwischen den Baumstämmen und wirken dadurch weiter entfernt. */
+.firefly.distant {
+  width: clamp(2px, 0.18vw, 4px);
+  height: clamp(2px, 0.18vw, 4px);
+  background: rgba(255, 236, 186, 0.72);
+  box-shadow:
+    0 0 4px rgba(255, 240, 199, 0.55),
+    0 0 10px rgba(255, 218, 135, 0.28);
+  filter: blur(0.7px);
+  mix-blend-mode: screen;
+  animation-name: distant-glow, distant-float;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  animation-direction: alternate, alternate;
+}
+
+/* Positionen bewusst eher zwischen den Baumstämmen als über dem Text. */
+.f27 { left: 12%; top: 34%; animation-duration: 9.5s, 24s; animation-delay: -2s, -8s; }
+.f28 { left: 24%; top: 41%; animation-duration: 11s, 28s; animation-delay: -7s, -13s; }
+.f29 { left: 37%; top: 36%; animation-duration: 10.2s, 26s; animation-delay: -4s, -18s; }
+.f30 { left: 47%; top: 42%; animation-duration: 12s, 30s; animation-delay: -9s, -5s; }
+.f31 { left: 58%; top: 35%; animation-duration: 9.8s, 25s; animation-delay: -6s, -11s; }
+.f32 { left: 69%; top: 40%; animation-duration: 11.6s, 29s; animation-delay: -3s, -16s; }
+.f33 { left: 81%; top: 33%; animation-duration: 10.7s, 27s; animation-delay: -8s, -7s; }
+.f34 { left: 88%; top: 48%; animation-duration: 12.4s, 31s; animation-delay: -5s, -20s; }
+
+@keyframes distant-glow {
+  0%, 18% { opacity: 0.01; transform: scale(0.45); }
+  42%     { opacity: 0.28; transform: scale(0.82); }
+  58%     { opacity: 0.55; transform: scale(1.0); }
+  76%     { opacity: 0.18; transform: scale(0.78); }
+  100%    { opacity: 0.03; transform: scale(0.52); }
+}
+
+@keyframes distant-float {
+  0%   { margin-left: 0;    margin-top: 0; }
+  28%  { margin-left: 7px;  margin-top: -5px; }
+  54%  { margin-left: -5px; margin-top: -11px; }
+  78%  { margin-left: 8px;  margin-top: -2px; }
+  100% { margin-left: -4px; margin-top: 7px; }
+}
+
+@media (max-width: 700px) {
+  .firefly.distant {
+    width: 3px;
+    height: 3px;
+    box-shadow:
+      0 0 4px rgba(255, 240, 199, 0.58),
+      0 0 9px rgba(255, 218, 135, 0.3);
+  }
+}
